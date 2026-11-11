@@ -233,8 +233,8 @@ When actual CEP data are available, I will report the estimated regression coeff
 
 **GitHub Repository**
 
-[View My GitHub Repository](https://github.com/WillySu/M08-Reflection-gtsummary)
+[View My GitHub Repository](https://github.com/WillySuu/M08-Reflection-gtsummary)
 
 **GitHub Pages Presentation**
 
-[View My M08 Reflection Presentation](https://willysu.github.io/M08-Reflection-gtsummary/)
+[View My M08 Reflection Presentation](https://willysuu.github.io/M08-Reflection-gtsummary/)
