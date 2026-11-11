@@ -229,16 +229,12 @@ When actual CEP data are available, I will report the estimated regression coeff
 
 `gtsummary` provides a bridge between statistical analysis and professional communication. The course examples show how to prepare descriptive tables, cross-tabulations, and regression summaries with reproducible code. My next step is to apply these techniques to verified CEP responses rather than illustrative or invented results.
 
-## Appendix — References and Links
+## Appendix: GitHub Links
 
--   [Professor Jung's M08 gtsummary lesson](https://jaejungca.github.io/gtsummary/M08-Customizable%20Tables-gtsummary.html)
--   [Dr. Daniel Sjoberg's YouTube video](https://www.youtube.com/watch?v=tANo9E1SYJE)
--   [gtsummary documentation](https://www.danieldsjoberg.com/gtsummary/)
--   [gt documentation](https://gt.rstudio.com/)
--   [gtExtras documentation](https://jthomasmock.github.io/gtExtras/)
+**GitHub Repository**
 
-**GitHub Repository:** Add your repository URL here.
+[View My GitHub Repository](https://github.com/WillySu/M08-Reflection-gtsummary)
 
-**GitHub Pages:** Add your published presentation URL here.
+**GitHub Pages Presentation**
 
-**Submission check:** Replace paraphrased prompts with the instructor's exact wording and verify the three video-specific takeaways before submission.
+[View My M08 Reflection Presentation](https://willysu.github.io/M08-Reflection-gtsummary/)
