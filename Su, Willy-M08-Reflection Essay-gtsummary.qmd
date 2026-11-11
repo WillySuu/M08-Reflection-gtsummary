@@ -1,0 +1,244 @@
+---
+title: "M08-Reflection Essay-gtsummary"
+subtitle: "M08 Reflection - Revealjs Presentation"
+author: "Willy Su"
+institute: "IBM 6500, Cal Poly Pomona"
+date: "`r Sys.Date()`"
+format:
+  revealjs:
+    theme: serif
+    width: 1600
+    height: 900
+    footer: "M08"
+    transition: slide
+    transition-speed: default
+    incremental: false
+    toc: true
+    toc-depth: 1
+    slide-number: true
+    scrollable: true
+    smaller: true
+    code-fold: false
+    code-overflow: wrap
+    number-sections: false
+    number-depth: 5
+    embed-resources: true
+    css: styles.css
+editor: visual
+execute:
+  echo: true
+  freeze: auto
+---
+
+## Overview
+
+-   Q1: What I learned about `gtsummary`
+-   Q2: Comparing `gtsummary`, `gt`, and `gtExtras`
+-   Q3: City × preferred language cross-tabulation (CEP RQ3)
+-   Q4: Consultation intention regression (CEP RQ2)
+
+::: notes
+This presentation separates completed conceptual reflection from analysis that cannot yet be conducted without actual survey responses.
+:::
+
+## Q1 — Reflection Prompt
+
+**Prompt (paraphrased; replace with the instructor's exact wording):** Explain what `gtsummary` does and how it could support your academic work and future career.
+
+## Q1 — My Reflection
+
+`gtsummary` transforms statistical results into readable, presentation-ready tables. Its `tbl_summary()` function describes categorical and continuous variables, while `add_p()` can add group-comparison tests. `tbl_cross()` displays two categorical variables, and `tbl_regression()` summarizes model estimates.
+
+I can use these tools to communicate consumer research findings clearly. For my orthodontics CEP project, tables could help compare audience segments and explain relationships among website trust, perceived credibility, information quality, and consultation intention. In a future analytics role, reproducible tables would make reports easier to update and review.
+
+::: notes
+I value both the statistical functions and the ability to present results to nontechnical stakeholders.
+:::
+
+## Q1 — Example Workflow
+
+```{r}
+# Demonstration of package syntax only; no CEP data are used.
+# install.packages("gtsummary") # Run once if needed
+library(gtsummary)
+
+# Example using the package's built-in teaching dataset:
+# trial |> tbl_summary(by = trt) |> add_p()
+```
+
+The commented example uses a built-in teaching dataset, **not** CEP responses.
+
+## Q2 — Reflection Prompt
+
+**Prompt (paraphrased; replace with the instructor's exact wording):** Compare `gtsummary`, `gt`, and `gtExtras`, and discuss three new ideas from Dr. Daniel Sjoberg's presentation.
+
+## Q2 — Comparing the Packages
+
+| Package | Main purpose | Example use |
+|------------------------|------------------------|------------------------|
+| `gtsummary` | Statistical summary and regression tables | `tbl_summary()`, `tbl_regression()` |
+| `gt` | Detailed table formatting and layout | Headers, labels, footnotes |
+| `gtExtras` | Additional visual enhancements for `gt` tables | Sparklines and visual styling |
+
+The packages are complementary: generate statistical results with `gtsummary`, format with `gt`, and optionally add visual features using `gtExtras`.
+
+## Q2 — Three Learning Points to Verify
+
+**Provisional reflection based on the course materials, not verified claims about the video's spoken content:**
+
+1.  Statistical tables can be produced through a reproducible R workflow rather than manually formatted.
+2.  Group comparisons and regression outputs can be communicated in consistent, readable tables.
+3.  A statistical table can be converted to a `gt` object for additional presentation styling.
+
+**Before submitting:** Verify these points against the video transcript and revise them into three specific takeaways from Dr. Sjoberg's presentation.
+
+## Q3 — Cross-tabulation Prompt
+
+**Prompt (paraphrased; replace with the instructor's exact wording):** Select two variables from the MSDM CEP data, create a cross-tabulation, conduct an appropriate statistical test, and interpret the findings.
+
+## Q3 — Proposed Analysis Based on CEP RQ3
+
+**CEP research question:** How do information needs, website/content evaluations, and consultation intention differ between prospective orthodontic decision-makers in San Gabriel and Chino Hills?
+
+For the categorical association analysis, I will use:
+
+-   **Variable 1:** City of residence (`S3`: San Gabriel / Chino Hills)
+-   **Variable 2:** Preferred information language (`Q3`)
+-   **Method:** Cross-tabulation and Pearson chi-square test, or Fisher's exact test when expected cell frequencies are too small.
+
+**Current status:** The CEP Data Analysis Table specifies these variables, but survey responses have not yet been collected or provided. No observed frequencies, p-values, or conclusions are available.
+
+## Q3 — R Code Template
+
+```{r}
+# ANALYSIS TEMPLATE ONLY — no CEP survey data are available.
+# The code is commented out so this presentation renders now.
+# Confirm the exported CSV's actual column names and response labels.
+# install.packages(c("readr", "dplyr", "gtsummary")) # if needed
+# cep <- readr::read_csv("cep_survey.csv")
+#
+# analysis_data <- cep |>
+#   dplyr::transmute(
+#     city = S3,
+#     preferred_language = Q3
+#   ) |>
+#   dplyr::filter(!is.na(city), !is.na(preferred_language))
+#
+# # Descriptive cross-tabulation with row percentages
+# analysis_data |>
+#   gtsummary::tbl_cross(
+#     row = city,
+#     col = preferred_language,
+#     percent = "row"
+#   )
+#
+# # Check assumptions before selecting the inferential test
+# counts <- table(analysis_data$city, analysis_data$preferred_language)
+# chi <- stats::chisq.test(counts)
+# chi$expected
+#
+# # Choose the test based on sparse cells and table dimensions.
+# # For a 2 x 2 table, Fisher's exact test is often appropriate
+# # when expected counts are small.
+# if (any(chi$expected < 5)) {
+#   result <- stats::fisher.test(counts)
+# } else {
+#   result <- chi
+# }
+# result
+#
+# # Once the test is selected, add its result to the formatted table.
+# # gtsummary::add_p() can also be used after confirming test choice.
+```
+
+::: notes
+The variable names S3 and Q3 are questionnaire identifiers in our group's Data Analysis Table; exported dataset headers may differ. The inferential test must be selected after checking cell counts. This is a planned analysis, not a completed one.
+:::
+
+## Q3 — Interpretation Plan
+
+After receiving real survey responses, I will present the number and percentage of language preferences in each city, the chosen test and its p-value, and whether the data support an association between city and language preference. I will explain any sparse-cell limitations and avoid claiming that the city causes the preference.
+
+**Results pending: no survey data available.**
+
+## Q4 — Regression Prompt
+
+**Prompt (paraphrased; replace with the instructor's exact wording):** Use MSDM CEP data to fit a multiple regression model, present a formatted results table, and interpret the results.
+
+## Q4 — Proposed Model Based on CEP RQ2
+
+**CEP research question:** How are website/content evaluations associated with respondents' intention to request a consultation with PhD Orthodontics at its existing San Gabriel practice?
+
+**Dependent variable:** Consultation request intention (`Q9`: `CI1`–`CI3`).
+
+**Independent variables:**
+
+-   Information quality (`Q5`: `IQ1`–`IQ4`)
+-   Message credibility (`Q6`: `MC1`–`MC3`)
+-   Perceived provider trustworthiness (`Q7`: `TR1`–`TR3`)
+-   Professionalism of presentation (`Q8`: `PR1`–`PR3`)
+
+The team's analysis plan calls for checking reliability/dimensionality before combining questionnaire items into scales. If the scales, sample size, and model assumptions are suitable, I will use multiple linear regression to examine associations, **not causal effects**.
+
+## Q4 — R Code Template
+
+```{r}
+# ANALYSIS TEMPLATE ONLY — deliberately not executed.
+# Replace column names after inspecting the actual survey export.
+# Confirm reverse coding, missing-value rules, and reliability
+# before constructing any composite scores.
+# cep <- readr::read_csv("cep_survey.csv")
+#
+# # Illustrative scale construction ONLY after validation:
+# model_data <- cep |>
+#   dplyr::mutate(
+#     information_quality = rowMeans(dplyr::pick(IQ1:IQ4), na.rm = FALSE),
+#     message_credibility = rowMeans(dplyr::pick(MC1:MC3), na.rm = FALSE),
+#     provider_trustworthiness = rowMeans(dplyr::pick(TR1:TR3), na.rm = FALSE),
+#     professionalism = rowMeans(dplyr::pick(PR1:PR3), na.rm = FALSE),
+#     consultation_intention = rowMeans(dplyr::pick(CI1:CI3), na.rm = FALSE)
+#   ) |>
+#   dplyr::select(consultation_intention, information_quality,
+#                 message_credibility, provider_trustworthiness,
+#                 professionalism) |>
+#   tidyr::drop_na()
+#
+# model <- stats::lm(
+#   consultation_intention ~ information_quality +
+#     message_credibility + provider_trustworthiness + professionalism,
+#   data = model_data
+# )
+#
+# gtsummary::tbl_regression(model) |>
+#   gtsummary::bold_labels()
+# summary(model)
+# plot(model)  # Examine residuals, fitted values, and influence.
+```
+
+::: notes
+Item ranges are taken from the team's Data Analysis Table. They are not evidence that the items already form reliable scales. Do not execute or interpret this model until the survey data and measurement checks are available.
+:::
+
+## Q4 — Interpretation Plan
+
+When actual CEP data are available, I will report the estimated regression coefficients, confidence intervals, p-values, and model fit (including R-squared). I will assess sample size, missing data, correlated predictors, and residual diagnostics. Any findings will describe associations with consultation intention, not proof that website evaluations cause consultations.
+
+**Results pending: no survey data available.**
+
+## Reflection — Key Takeaways
+
+`gtsummary` provides a bridge between statistical analysis and professional communication. The course examples show how to prepare descriptive tables, cross-tabulations, and regression summaries with reproducible code. My next step is to apply these techniques to verified CEP responses rather than illustrative or invented results.
+
+## Appendix — References and Links
+
+-   [Professor Jung's M08 gtsummary lesson](https://jaejungca.github.io/gtsummary/M08-Customizable%20Tables-gtsummary.html)
+-   [Dr. Daniel Sjoberg's YouTube video](https://www.youtube.com/watch?v=tANo9E1SYJE)
+-   [gtsummary documentation](https://www.danieldsjoberg.com/gtsummary/)
+-   [gt documentation](https://gt.rstudio.com/)
+-   [gtExtras documentation](https://jthomasmock.github.io/gtExtras/)
+
+**GitHub Repository:** Add your repository URL here.
+
+**GitHub Pages:** Add your published presentation URL here.
+
+**Submission check:** Replace paraphrased prompts with the instructor's exact wording and verify the three video-specific takeaways before submission.
